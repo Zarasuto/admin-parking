@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <form autocomplete="off" action="#" th:action="@{/register}" th:object="${user}" method="post" class="form-signin" role="form">
+            <h3 class="form-signin-heading">Sign up</h3>
+            <div class="form-group">
+                <div class="form-group">
+                    <br>
+                    <input type="text" name="email" th:field="*{email}" placeholder="Email" class="form-control" />
+                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error">Email Error</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <br>
+                    <input type="text" name="username" th:field="*{username}" placeholder="Userame" class="form-control" />
+                    <span th:if="${#fields.hasErrors('username')}"th:errors="*{username}" class="error" >Email Error</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <br>
+                    <input type="password" name="plainpassword" th:field="*{plainpassword}" placeholder="Password" class="form-control" />
+                    <ul>
+                        <li th:each="err: ${#fields.errors('plainpassword')}" th:text="${err}" class="error" />
+                        <li style="color:gray">8 or more characters</li>
+                        <li style="color:gray">1 Uppercase character</li>
+                        <li style="color:gray">1 Digit character</li>
+                        <li style="color:gray">1 Special character</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <br>
+                    <input type="password" name="repeatpassword" th:field="*{repeatpassword}" placeholder="Repeat Password" class="form-control" />
+                    <span th:if="${#fields.hasErrors('repeatpassword')}" th:errors="*{repeatpassword}" class="error">Email Error</span>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <div class="">
+                    <br>
+                    <button type="submit" class="btn">Register User</button>
+                </div>
+                <br>
+                <div class="texters" style="text-align: left; font-family: Arial; font-size: 14px;">Already have an account? <a href="/login">Login</a></div>
+            </div>
+            <div class="alert alert-success alert-dismissible col-sm-12"
+                 th:if="${SuccessMessage!=null}">
+                <span>Registration Success!</span>
+                <a href="/login">Go to login</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
